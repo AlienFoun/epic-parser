@@ -3,7 +3,7 @@ from aiogram.dispatcher.filters import Text
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from loguru import logger
 
-from config import BOT_TOKEN
+from config import BOT_TOKEN, hour, minute
 from sql_funcs import sql_check_user, sql_add_user, sql_remove_user, sql_get_users
 from keyboards import startMenu
 from get_free_games import get_free_games
@@ -41,7 +41,7 @@ async def callbacks_num(call: types.CallbackQuery):
         sql_add_user(user_id)
 
         await call.message.edit_text(
-            f"Прекрасно, {call.from_user.get_mention(as_html=True)}, я буду уведомлять вас каждый день в 20:00! "
+            f"Прекрасно, {call.from_user.get_mention(as_html=True)}, я буду уведомлять вас каждый день в {hour}:{str(minute)*2}! "
             f"Чтобы отписаться от рассылки, введи команду /stop!",
             parse_mode=types.ParseMode.HTML
         )
@@ -100,7 +100,7 @@ async def collect_data():
 
 async def main():
     scheduler = AsyncIOScheduler()
-    scheduler.add_job(collect_data, 'cron', hour=20, minute=0, timezone='Europe/Moscow')
+    scheduler.add_job(collect_data, 'cron', hour=hour, minute=minute, timezone='Europe/Moscow')
     try:
         scheduler.start()
         logger.info('Бот был успешно запущен')
