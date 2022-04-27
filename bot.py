@@ -12,7 +12,7 @@ import asyncio
 
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher(bot=bot)
-logger.add("epicgames.log", format="{time} {level} {message}", level="DEBUG",
+logger.add(f"{__file__[:3]}.log", format="{time} {level} {message}", level="DEBUG",
            rotation='100 KB', compression='zip')
 
 
