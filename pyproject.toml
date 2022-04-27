@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "epic_games_parser"
+version = "0.1.0"
+description = ""
+authors = ["AlienFoun <alienfoun@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+aiogram = "^2.20"
+APScheduler = "^3.9.1"
+loguru = "^0.6.0"
+psycopg2 = "^2.9.3"
+asyncio = "^3.4.3"
+requests = "^2.27.1"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
