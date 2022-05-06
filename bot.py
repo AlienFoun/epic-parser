@@ -93,9 +93,13 @@ async def collect_data():
     user_data = sql_get_users()
     message = '\n\n'.join(message_list)
     for user in user_data:
-        await bot.send_message(chat_id=user, text=f'На данный момент доступны игры:\n\n{message}',
+        try:
+            await bot.send_message(chat_id=user, text=f'На данный момент доступны игры:\n\n{message}',
                                disable_web_page_preview=True)
-        logger.info(f'Сообщение успешно отправлено пользователю {user}')
+            logger.info(f'Сообщение успешно отправлено пользователю {user}')
+
+        except Exception as err:
+            logger.exception(f'Произошла ошибка: {err}')
 
 
 async def main():
